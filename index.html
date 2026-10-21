@@ -2,371 +2,384 @@
 <!DOCTYPE html>
 <html lang="uz">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0b1020">
-  <meta name="description" content="KyveroTime — kunlik reja va eslatmalar">
-  <title>KyveroTime</title>
-
-  <style>
-    * { box-sizing: border-box; }
-    :root {
-      color-scheme: dark;
-      --bg: #080d19;
-      --panel: #121b2d;
-      --line: #25334c;
-      --blue: #68aaff;
-      --text: #f3f6ff;
-      --muted: #98a8c2;
-    }
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: system-ui, Arial, sans-serif;
-    }
-    button, input { font: inherit; }
-    button { cursor: pointer; }
-    .app {
-      width: min(100%, 560px);
-      min-height: 100dvh;
-      margin: auto;
-      padding: 24px 18px 40px;
-    }
-    header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 28px;
-    }
-    .logo {
-      width: 50px;
-      height: 50px;
-      display: grid;
-      place-items: center;
-      border-radius: 17px;
-      background: linear-gradient(135deg,#427cff,#63e0db);
-      color: #071020;
-      font-size: 27px;
-      font-weight: 900;
-    }
-    h1 { font-size: 24px; margin: 0; letter-spacing: -.8px; }
-    .sub, .muted { color: var(--muted); font-size: 13px; }
-    .hero {
-      background: linear-gradient(140deg,#172c4a,#111a2b 75%);
-      border: 1px solid var(--line);
-      border-radius: 25px;
-      padding: 23px;
-      margin-bottom: 22px;
-    }
-    .eyebrow {
-      color: #8fbaff;
-      font-size: 12px;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-    }
-    .clock { font-size: 42px; font-weight: 750; margin: 9px 0 2px; }
-    h2 { font-size: 19px; margin: 24px 0 13px; }
-    .stats { display: flex; gap: 10px; margin-top: 20px; }
-    .stat {
-      flex: 1; padding: 12px;
-      background: #0c1728; border-radius: 15px;
-    }
-    .stat strong { display: block; font-size: 23px; }
-    .stat span { color: var(--muted); font-size: 12px; }
-    .panel {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      padding: 18px;
-      margin-bottom: 18px;
-    }
-    label { display: block; color: var(--muted); font-size: 13px; margin: 12px 0 7px; }
-    input {
-      width: 100%; min-width: 0;
-      background: #0a1221;
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      padding: 13px;
-      color: white;
-      outline: none;
-    }
-    input:focus { border-color: var(--blue); }
-    .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .primary, .secondary {
-      border: 0; border-radius: 13px;
-      padding: 13px 15px; font-weight: 700;
-    }
-    .primary { width: 100%; margin-top: 16px; background: var(--blue); color: #071326; }
-    .secondary { background: #22314a; color: white; }
-    .task {
-      display: flex; align-items: flex-start; gap: 11px;
-      padding: 15px 0; border-bottom: 1px solid var(--line);
-    }
-    .task:last-child { border-bottom: 0; }
-    .check {
-      width: 23px; height: 23px; flex: 0 0 23px;
-      border: 1px solid #526783; border-radius: 8px;
-      background: transparent; color: white; padding: 0;
-    }
-    .task-main { flex: 1; min-width: 0; }
-    .task-title { font-weight: 650; overflow-wrap: anywhere; }
-    .task-time { color: var(--muted); font-size: 12px; margin-top: 5px; }
-    .done .task-title { text-decoration: line-through; color: var(--muted); }
-    .delete { border: 0; background: transparent; color: #ff8794; padding: 4px; }
-    .empty { text-align: center; padding: 25px 5px; color: var(--muted); }
-    .notice { font-size: 12px; line-height: 1.6; color: var(--muted); }
-    footer { text-align: center; color: #687a97; font-size: 12px; padding-top: 14px; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b1020">
+<meta name="description" content="KyveroTime — rejalaring, maqsadlaring va eslatmalaring bir joyda">
+<title>KyveroTime</title>
+<style>
+:root{color-scheme:dark;--bg:#080d19;--card:#111a2b;--line:#26344b;--text:#f4f7ff;--muted:#93a3bd;--blue:#78aaff;--cyan:#65e2d1;--red:#ff8294}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,sans-serif}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.app{max-width:540px;min-height:100dvh;margin:auto;padding:20px 16px 105px}
+header{display:flex;align-items:center;gap:12px;margin:4px 0 25px}
+.logo{height:49px;width:49px;border-radius:17px;display:grid;place-items:center;background:linear-gradient(135deg,#6492ff,#64e2d0);color:#091222;font-weight:950;font-size:27px}
+h1{font-size:23px;letter-spacing:-.8px;margin:0}
+h2{font-size:20px;margin:22px 0 13px}
+h3{font-size:16px;margin:0}
+p{line-height:1.5}
+.muted,.sub{color:var(--muted);font-size:13px}
+.page{display:none}
+.page.active{display:block;animation:appear .18s ease}
+@keyframes appear{from{opacity:.5;transform:translateY(4px)}to{opacity:1;transform:none}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:17px;margin-bottom:14px}
+.hero{background:linear-gradient(145deg,#193458,#111a2b 75%);padding:22px}
+.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:1.7px;color:#a7caff}
+.clock{font-size:43px;font-weight:800;letter-spacing:-2px;margin:6px 0}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:19px}
+.stat{background:#0c1729;border-radius:15px;padding:12px 9px}
+.stat strong{font-size:23px;display:block}
+.stat span{font-size:11px;color:var(--muted)}
+.row{display:flex;align-items:center;gap:12px}
+.between{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.avatar{width:58px;height:58px;border-radius:50%;object-fit:cover;background:#25344c;border:2px solid #6f9aff}
+.btn{border:0;border-radius:12px;padding:12px 15px;background:#263752;color:white;font-weight:650}
+.primary{background:linear-gradient(110deg,#80aaff,#64e1d2);color:#071426}
+.full{width:100%;margin-top:13px}
+.small{font-size:12px;padding:8px 10px}
+input,select,textarea{width:100%;min-width:0;background:#0a1221;border:1px solid var(--line);border-radius:12px;padding:12px;color:var(--text)}
+label{display:block;color:var(--muted);font-size:12px;margin:13px 0 7px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.task{display:flex;align-items:flex-start;gap:10px;padding:14px 0;border-bottom:1px solid var(--line)}
+.task:last-child{border-bottom:0}
+.check{width:23px;height:23px;flex:0 0 23px;border:1px solid #647b9b;border-radius:8px;background:transparent;color:white;padding:0}
+.taskbody{flex:1;min-width:0}
+.tasktitle{font-weight:650;overflow-wrap:anywhere}
+.task.done .tasktitle{text-decoration:line-through;color:var(--muted)}
+.tasktime{font-size:12px;color:var(--muted);margin-top:5px}
+.danger{color:var(--red);background:transparent;border:0;padding:5px}
+.badge{font-size:11px;color:#9dded5;background:#163532;padding:5px 8px;border-radius:20px}
+.empty{text-align:center;color:var(--muted);padding:22px 6px;font-size:13px}
+.nav{position:fixed;z-index:10;bottom:0;left:50%;transform:translateX(-50%);width:min(540px,100%);padding:10px 5px calc(10px + env(safe-area-inset-bottom));background:#0c1322f5;backdrop-filter:blur(18px);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr)}
+.nav button{background:transparent;border:0;color:#8495b0;font-size:10px;padding:5px 0;display:flex;align-items:center;flex-direction:column;gap:5px}
+.nav button .ico{font-size:21px}
+.nav button.active{color:#8db8ff}
+.progress{height:7px;background:#26344b;border-radius:9px;overflow:hidden;margin:12px 0}
+.progress div{height:100%;background:linear-gradient(90deg,#7da7ff,#65e2d1);width:0}
+.notice{font-size:12px;color:var(--muted);line-height:1.6}
+.section-title{margin:23px 0 12px}
+hr{border:0;border-top:1px solid var(--line);margin:15px 0}
+.hidden{display:none!important}
+</style>
 </head>
-
 <body>
-<main class="app">
-  <header>
-    <div class="logo">K</div>
-    <div>
-      <h1>KyveroTime</h1>
-      <div class="sub">Vaqtingni boshqar. Maqsadingga erish.</div>
-    </div>
-  </header>
+<div class="app">
+<header>
+  <div class="logo">K</div>
+  <div style="flex:1">
+    <h1>KyveroTime</h1>
+    <div class="sub">Your time. Your future.</div>
+  </div>
+  <img id="headerAvatar" class="avatar hidden" alt="Profil rasmi">
+</header>
 
-  <section class="hero">
-    <div class="eyebrow">Sening bugungi kuning</div>
+<!-- 1. BOSH SAHIFA -->
+<section class="page active" id="home">
+  <div class="card hero">
+    <div class="eyebrow">Sening vaqting</div>
     <div class="clock" id="clock">00:00:00</div>
     <div class="sub" id="today"></div>
     <div class="stats">
-      <div class="stat"><strong id="total">0</strong><span>Jami rejalar</span></div>
-      <div class="stat"><strong id="completed">0</strong><span>Bajarildi</span></div>
-      <div class="stat"><strong id="remaining">0</strong><span>Qoldi</span></div>
+      <div class="stat"><strong id="homeTotal">0</strong><span>Bugungi reja</span></div>
+      <div class="stat"><strong id="homeDone">0</strong><span>Bajarildi</span></div>
+      <div class="stat"><strong id="homeLeft">0</strong><span>Qoldi</span></div>
     </div>
-  </section>
+  </div>
+  <div class="between section-title">
+    <h2 style="margin:0">Bugungi rejalar</h2>
+    <button class="btn small" onclick="openPage('plans')">Barchasi →</button>
+  </div>
+  <div class="card" id="homeTasks"></div>
+  <div class="card">
+    <div class="between"><h3>Kunlik natija</h3><strong id="progressText">0%</strong></div>
+    <div class="progress"><div id="progressBar"></div></div>
+    <div class="notice">Kichik qadamlar katta maqsadlarga olib boradi.</div>
+  </div>
+  <button class="btn primary full" onclick="openPage('plans');$('taskName').focus()">＋ Yangi reja qo‘shish</button>
+</section>
 
-  <h2>＋ Yangi reja</h2>
-  <section class="panel">
+<!-- 2. REJALAR -->
+<section class="page" id="plans">
+  <h2 style="margin-top:0">Kunlik rejalar</h2>
+  <div class="card">
     <form id="taskForm">
-      <label for="taskName">Reja nomi</label>
-      <input id="taskName" maxlength="100" placeholder="Masalan, matematika o‘qish" required>
-
-      <div class="pair">
-        <div>
-          <label for="taskDate">Sana</label>
-          <input id="taskDate" type="date" required>
-        </div>
-        <div>
-          <label for="taskTime">Vaqt</label>
-          <input id="taskTime" type="time" required>
-        </div>
+      <label for="taskName">Vazifa nomi</label>
+      <input id="taskName" maxlength="120" placeholder="Masalan, matematika o‘qish" required>
+      <div class="grid2">
+        <div><label for="taskDate">Sana</label><input id="taskDate" type="date" required></div>
+        <div><label for="taskTime">Vaqt</label><input id="taskTime" type="time" required></div>
       </div>
-
-      <button class="primary" type="submit">＋ Rejani saqlash</button>
+      <label for="taskNote">Izoh (ixtiyoriy)</label>
+      <textarea id="taskNote" rows="2" maxlength="300" placeholder="Vazifa haqida..."></textarea>
+      <button class="btn primary full" id="saveTask" type="submit">＋ Rejani saqlash</button>
+      <button class="btn full hidden" id="cancelEdit" type="button" onclick="resetForm()">Bekor qilish</button>
     </form>
-  </section>
+  </div>
+  <div class="grid2" style="margin-bottom:14px">
+    <div><label for="filterDate">Rejalar sanasi</label><input id="filterDate" type="date"></div>
+    <div><label for="filterStatus">Holati</label>
+      <select id="filterStatus"><option value="all">Barchasi</option><option value="open">Bajarilmagan</option><option value="done">Bajarilgan</option></select>
+    </div>
+  </div>
+  <div class="card" id="allTasks"></div>
+</section>
 
-  <h2>📅 Rejalarim</h2>
-  <section class="panel">
-    <div id="taskList"></div>
-  </section>
+<!-- 3. ESLATMALAR -->
+<section class="page" id="reminders">
+  <h2 style="margin-top:0">Eslatmalar 🔔</h2>
+  <div class="card">
+    <h3>Bildirishnomalar</h3>
+    <p class="notice">Ruxsat berilsa, sayt ochiq turganida belgilangan vaqtda bildirishnoma ko‘rsatishga urinadi.</p>
+    <button class="btn primary full" id="enableNotifications">Bildirishnomalarni yoqish</button>
+    <div class="notice" id="notificationStatus" style="margin-top:12px">Ruxsat holati tekshirilmagan.</div>
+  </div>
+  <h2>Eslatma vaqtlari</h2>
+  <div class="card" id="reminderTasks"></div>
+  <div class="card">
+    <h3>Muhim ma’lumot</h3>
+    <p class="notice">Brauzer sahifasi yopilsa, telefon qulflansa yoki tizim brauzerni to‘xtatsa, bu versiya eslatmani kafolatlay olmaydi. Buning uchun keyinchalik server orqali push-bildirishnomalar sozlanadi.</p>
+  </div>
+</section>
 
-  <section class="panel">
-    <h2 style="margin-top:0">🔔 Bildirishnomalar</h2>
-    <p class="notice" id="notificationStatus">
-      Bildirishnomalarni yoqib, eslatmalar uchun ruxsat ber.
-    </p>
-    <button class="secondary" id="enableNotifications" type="button">
-      Bildirishnomalarni yoqish
-    </button>
-    <p class="notice">
-      Eslatma: ushbu boshlang‘ich versiyada sayt ochiq turganida
-      eslatmalar ishlaydi. Sayt yopiq yoki telefon qulflangan paytda
-      bildirishnoma kelishi kafolatlanmaydi.
-    </p>
-  </section>
+<!-- 4. STATISTIKA -->
+<section class="page" id="stats">
+  <h2 style="margin-top:0">Statistika 📊</h2>
+  <div class="stats" style="margin:0 0 15px">
+    <div class="stat"><strong id="statTotal">0</strong><span>Jami</span></div>
+    <div class="stat"><strong id="statDone">0</strong><span>Bajarildi</span></div>
+    <div class="stat"><strong id="statRate">0%</strong><span>Natija</span></div>
+  </div>
+  <div class="card">
+    <h3>Bugungi natija</h3>
+    <div class="progress"><div id="todayBar"></div></div>
+    <div class="between"><span class="muted">Bugun bajarilgan</span><strong id="todayRate">0%</strong></div>
+  </div>
+  <div class="card">
+    <h3>Oxirgi 7 kun</h3>
+    <div id="weekStats"></div>
+  </div>
+  <div class="card">
+    <h3>Maqsading</h3>
+    <p class="notice">Har kuni oz bo‘lsa ham oldinga intil. Rejalaringni bajarib, o‘z natijangni kuzat.</p>
+  </div>
+</section>
 
-  <footer>KYVEROTIME · Vaqting qadrlidir</footer>
-</main>
+<!-- 5. PROFIL VA SOZLAMALAR -->
+<section class="page" id="profile">
+  <h2 style="margin-top:0">Profilim 👤</h2>
+  <div class="card" style="text-align:center">
+    <img id="profileAvatar" class="avatar" style="width:90px;height:90px" alt="Profil rasmi">
+    <div><label for="photoInput" class="btn" style="display:inline-block;margin-top:12px">📷 Rasm tanlash</label><input class="hidden" id="photoInput" type="file" accept="image/*"></div>
+    <label for="profileName" style="text-align:left">Isming</label>
+    <input id="profileName" maxlength="50" placeholder="Ismingni yoz">
+    <button class="btn primary full" id="saveProfile">Profilni saqlash</button>
+  </div>
+  <div class="card">
+    <h3>Sozlamalar</h3>
+    <label for="themeSelect">Ko‘rinish</label>
+    <select id="themeSelect"><option value="dark">Dark — tungi</option><option value="light">Light — yorug‘</option></select>
+    <button class="btn full" id="exportData">Ma’lumotlarni zaxiralash</button>
+    <label for="importData">Zaxira faylidan tiklash</label>
+    <input id="importData" type="file" accept=".json,application/json">
+    <p class="notice">Ma’lumotlar ushbu brauzer xotirasida saqlanadi. Brauzer ma’lumotlari o‘chirilsa yo‘qolishi mumkin. Zaxira faylini xavfsiz joyda saqla.</p>
+  </div>
+  <div class="card">
+    <h3>KyveroTime haqida</h3>
+    <p class="notice">Kunlik rejalaringni boshqarish uchun yaratilgan shaxsiy reja ilovasi.</p>
+    <div class="sub">KyveroTime · Your time. Your future.</div>
+  </div>
+</section>
+
+</div>
+
+<nav class="nav">
+  <button class="active" data-page="home"><span class="ico">⌂</span>Bosh sahifa</button>
+  <button data-page="plans"><span class="ico">▤</span>Rejalar</button>
+  <button data-page="reminders"><span class="ico">♧</span>Eslatmalar</button>
+  <button data-page="stats"><span class="ico">▥</span>Statistika</button>
+  <button data-page="profile"><span class="ico">◉</span>Profil</button>
+</nav>
 
 <script>
-  const $ = id => document.getElementById(id);
-  const storageKey = "kyverotime-tasks-v1";
-  let tasks = [];
+const $=id=>document.getElementById(id);
+const KEY="kyverotime-complete-v1";
+const PROFILE_KEY="kyverotime-profile-v1";
+let tasks=[],profile={name:"",photo:"",theme:"dark"},editingId=null;
+const sent=new Set();
 
-  try {
-    tasks = JSON.parse(localStorage.getItem(storageKey) || "[]");
-    if (!Array.isArray(tasks)) tasks = [];
-  } catch {
-    tasks = [];
-  }
+function readData(){
+ try{const d=JSON.parse(localStorage.getItem(KEY)||"[]");tasks=Array.isArray(d)?d:[];}catch{tasks=[]}
+ try{profile={...profile,...JSON.parse(localStorage.getItem(PROFILE_KEY)||"{}")}}catch{}
+}
+function storeTasks(){
+ try{localStorage.setItem(KEY,JSON.stringify(tasks));render();return true}
+ catch{alert("Saqlash amalga oshmadi. Xotira to‘lgan bo‘lishi mumkin.");return false}
+}
+function storeProfile(){
+ try{localStorage.setItem(PROFILE_KEY,JSON.stringify(profile));return true}
+ catch{alert("Profilni saqlab bo‘lmadi. Tanlangan rasm juda katta bo‘lishi mumkin.");return false}
+}
+function dateStr(d=new Date()){
+ return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+}
+function nowTime(){return new Date().toTimeString().slice(0,5)}
+function updateClock(){
+ const n=new Date();
+ $("clock").textContent=n.toLocaleTimeString("uz-UZ",{hour12:false});
+ $("today").textContent=n.toLocaleDateString("uz-UZ",{weekday:"long",day:"numeric",month:"long",year:"numeric"});
+}
+function openPage(id){
+ document.querySelectorAll(".page").forEach(p=>p.classList.toggle("active",p.id===id));
+ document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===id));
+ if(id==="plans")renderAllTasks();
+ if(id==="reminders")renderReminders();
+ if(id==="stats")renderStats();
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+document.querySelectorAll(".nav button").forEach(b=>b.addEventListener("click",()=>openPage(b.dataset.page)));
 
-  function save() {
-    try {
-      localStorage.setItem(storageKey, JSON.stringify(tasks));
-    } catch {
-      alert("Rejalarni saqlab bo‘lmadi. Telefon xotirasini tekshir.");
-    }
-    render();
-  }
+function resetForm(){
+ editingId=null;$("taskForm").reset();$("taskDate").value=dateStr();
+ $("saveTask").textContent="＋ Rejani saqlash";$("cancelEdit").classList.add("hidden");
+}
+$("taskForm").addEventListener("submit",e=>{
+ e.preventDefault();
+ const name=$("taskName").value.trim(),date=$("taskDate").value,time=$("taskTime").value;
+ if(!name||!date||!time)return;
+ if(editingId){
+  const t=tasks.find(x=>x.id===editingId);
+  if(t)Object.assign(t,{name,date,time,note:$("taskNote").value.trim(),notified:false});
+ }else{
+  tasks.push({id:Date.now().toString()+Math.random().toString(16).slice(2),name,date,time,note:$("taskNote").value.trim(),done:false,notified:false});
+ }
+ storeTasks();resetForm();
+});
+function editTask(id){
+ const t=tasks.find(x=>x.id===id);if(!t)return;
+ editingId=id;$("taskName").value=t.name;$("taskDate").value=t.date;$("taskTime").value=t.time;$("taskNote").value=t.note||"";
+ $("saveTask").textContent="O‘zgarishni saqlash";$("cancelEdit").classList.remove("hidden");
+ openPage("plans");$("taskName").focus();
+}
+function toggleTask(id){
+ const t=tasks.find(x=>x.id===id);if(t)t.done=!t.done;
+ storeTasks();
+}
+function deleteTask(id){
+ if(!confirm("Bu rejani o‘chirmoqchisanmi?"))return;
+ tasks=tasks.filter(t=>t.id!==id);storeTasks();
+}
+function makeTask(t){
+ const row=document.createElement("div");row.className="task"+(t.done?" done":"");
+ const check=document.createElement("button");check.className="check";check.textContent=t.done?"✓":"";
+ check.setAttribute("aria-label",t.done?"Bajarilmadi deb belgilash":"Bajarildi deb belgilash");check.onclick=()=>toggleTask(t.id);
+ const body=document.createElement("div");body.className="taskbody";
+ const title=document.createElement("div");title.className="tasktitle";title.textContent=t.name;
+ const time=document.createElement("div");time.className="tasktime";time.textContent=`${t.date} · ${t.time}`;
+ body.append(title,time);
+ if(t.note){const note=document.createElement("div");note.className="notice";note.textContent=t.note;body.append(note)}
+ const actions=document.createElement("div");
+ const edit=document.createElement("button");edit.className="danger";edit.textContent="✎";edit.setAttribute("aria-label","Tahrirlash");edit.onclick=()=>editTask(t.id);
+ const del=document.createElement("button");del.className="danger";del.textContent="×";del.setAttribute("aria-label","O‘chirish");del.onclick=()=>deleteTask(t.id);
+ actions.append(edit,del);row.append(check,body,actions);return row;
+}
+function fillList(el,list,msg){
+ el.replaceChildren();
+ if(!list.length){const e=document.createElement("div");e.className="empty";e.textContent=msg;el.append(e);return}
+ list.forEach(t=>el.append(makeTask(t)));
+}
+function renderAllTasks(){
+ const d=$("filterDate").value||dateStr(),status=$("filterStatus").value;
+ const list=tasks.filter(t=>t.date===d&&(status==="all"||(status==="done"?t.done:!t.done))).sort((a,b)=>a.time.localeCompare(b.time));
+ fillList($("allTasks"),list,"Bu sana uchun reja topilmadi.");
+}
+function renderReminders(){
+ const list=tasks.filter(t=>!t.done&&t.date>=dateStr()).sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time));
+ fillList($("reminderTasks"),list,"Hozircha kelgusi eslatmalar yo‘q.");
+}
+function renderStats(){
+ const done=tasks.filter(t=>t.done).length;
+ $("statTotal").textContent=tasks.length;$("statDone").textContent=done;
+ $("statRate").textContent=(tasks.length?Math.round(done/tasks.length*100):0)+"%";
+ const today=tasks.filter(t=>t.date===dateStr()),td=today.filter(t=>t.done).length;
+ const rate=today.length?Math.round(td/today.length*100):0;
+ $("todayRate").textContent=rate+"%";$("todayBar").style.width=rate+"%";
+ const box=$("weekStats");box.replaceChildren();
+ for(let i=6;i>=0;i--){
+  const d=new Date();d.setDate(d.getDate()-i);const key=dateStr(d);
+  const list=tasks.filter(t=>t.date===key),n=list.filter(t=>t.done).length;
+  const r=list.length?Math.round(n/list.length*100):0;
+  const row=document.createElement("div");row.style.margin="14px 0";
+  const line=document.createElement("div");line.className="between";
+  const name=document.createElement("span");name.textContent=d.toLocaleDateString("uz-UZ",{weekday:"short",day:"numeric",month:"short"});
+  const value=document.createElement("span");value.className="muted";value.textContent=`${n}/${list.length}`;
+  line.append(name,value);
+  const bar=document.createElement("div");bar.className="progress";
+  const fill=document.createElement("div");fill.style.width=r+"%";bar.append(fill);row.append(line,bar);box.append(row);
+ }
+}
+function render(){
+ const today=tasks.filter(t=>t.date===dateStr()).sort((a,b)=>a.time.localeCompare(b.time));
+ const done=today.filter(t=>t.done).length,rate=today.length?Math.round(done/today.length*100):0;
+ $("homeTotal").textContent=today.length;$("homeDone").textContent=done;$("homeLeft").textContent=today.length-done;
+ $("progressText").textContent=rate+"%";$("progressBar").style.width=rate+"%";
+ fillList($("homeTasks"),today.slice(0,5),"Bugun uchun reja yo‘q. Yangi reja qo‘sh!");
+ if($("filterDate"))renderAllTasks();
+ renderReminders();renderStats();
+}
+$("filterDate").value=dateStr();
+$("filterDate").addEventListener("change",renderAllTasks);
+$("filterStatus").addEventListener("change",renderAllTasks);
 
-  function localDate(date = new Date()) {
-    const y = date.getFullYear();
-    const m = String(date.getMonth() + 1).padStart(2, "0");
-    const d = String(date.getDate()).padStart(2, "0");
-    return `${y}-${m}-${d}`;
-  }
-
-  $("taskDate").value = localDate();
-
-  function updateClock() {
-    const now = new Date();
-    $("clock").textContent = now.toLocaleTimeString("uz-UZ", {
-      hour: "2-digit", minute: "2-digit", second: "2-digit",
-      hour12: false
-    });
-    $("today").textContent = now.toLocaleDateString("uz-UZ", {
-      weekday: "long", day: "numeric", month: "long", year: "numeric"
-    });
-  }
-
-  function render() {
-    const list = $("taskList");
-    const today = localDate();
-    const todaysTasks = tasks
-      .filter(t => t.date === today)
-      .sort((a, b) => a.time.localeCompare(b.time));
-
-    $("total").textContent = todaysTasks.length;
-    $("completed").textContent = todaysTasks.filter(t => t.done).length;
-    $("remaining").textContent = todaysTasks.filter(t => !t.done).length;
-
-    list.replaceChildren();
-
-    if (!todaysTasks.length) {
-      const empty = document.createElement("div");
-      empty.className = "empty";
-      empty.textContent = "Bugun uchun reja yo‘q. Birinchi rejangni qo‘sh!";
-      list.appendChild(empty);
-      return;
-    }
-
-    todaysTasks.forEach(task => {
-      const row = document.createElement("div");
-      row.className = "task" + (task.done ? " done" : "");
-
-      const check = document.createElement("button");
-      check.className = "check";
-      check.type = "button";
-      check.textContent = task.done ? "✓" : "";
-      check.setAttribute("aria-label", "Bajarilgan deb belgilash");
-      check.addEventListener("click", () => {
-        task.done = !task.done;
-        save();
-      });
-
-      const main = document.createElement("div");
-      main.className = "task-main";
-
-      const title = document.createElement("div");
-      title.className = "task-title";
-      title.textContent = task.name;
-
-      const time = document.createElement("div");
-      time.className = "task-time";
-      time.textContent = task.time + " · " + task.date;
-
-      main.append(title, time);
-
-      const del = document.createElement("button");
-      del.className = "delete";
-      del.type = "button";
-      del.textContent = "✕";
-      del.setAttribute("aria-label", "Rejani o‘chirish");
-      del.addEventListener("click", () => {
-        if (confirm("Bu rejani o‘chirmoqchisanmi?")) {
-          tasks = tasks.filter(t => t.id !== task.id);
-          save();
-        }
-      });
-
-      row.append(check, main, del);
-      list.appendChild(row);
-    });
-  }
-
-  $("taskForm").addEventListener("submit", event => {
-    event.preventDefault();
-
-    const name = $("taskName").value.trim();
-    const date = $("taskDate").value;
-    const time = $("taskTime").value;
-
-    if (!name || !date || !time) return;
-
-    const id = Date.now().toString() + Math.random().toString(16).slice(2);
-
-    tasks.push({
-      id, name, date, time, done: false, notified: false
-    });
-
-    save();
-    $("taskName").value = "";
-    $("taskName").focus();
-  });
-
-  $("enableNotifications").addEventListener("click", async () => {
-    if (!("Notification" in window)) {
-      $("notificationStatus").textContent =
-        "Bu brauzer bildirishnomalarni qo‘llab-quvvatlamaydi.";
-      return;
-    }
-
-    if (!window.isSecureContext) {
-      $("notificationStatus").textContent =
-        "Xavfsiz HTTPS manzilida ochish kerak.";
-      return;
-    }
-
-    try {
-      const permission = await Notification.requestPermission();
-      $("notificationStatus").textContent =
-        permission === "granted"
-          ? "Bildirishnomalarga ruxsat berildi. Eslatmalar sayt ochiq turganida ishlaydi."
-          : "Ruxsat berilmadi. Brauzer sozlamalaridan ruxsat berishing mumkin.";
-    } catch {
-      $("notificationStatus").textContent =
-        "Ruxsat so‘rash amalga oshmadi.";
-    }
-  });
-
-  const alreadySent = new Set();
-
-  function checkReminders() {
-    if (!("Notification" in window) ||
-        Notification.permission !== "granted") return;
-
-    const now = new Date();
-    const date = localDate(now);
-    const time = `${String(now.getHours()).padStart(2, "0")}:${String(now.getMinutes()).padStart(2, "0")}`;
-
-    tasks.forEach(task => {
-      const key = task.id + "-" + date;
-      if (task.date === date && task.time === time &&
-          !task.done && !alreadySent.has(key)) {
-        alreadySent.add(key);
-        try {
-          new Notification("KyveroTime ⏰", {
-            body: "Rejang vaqti keldi: " + task.name,
-            tag: key
-          });
-        } catch {}
-      }
-    });
-  }
-
-  updateClock();
-  render();
-  setInterval(updateClock, 1000);
-  setInterval(checkReminders, 15000);
-</script>
-</body>
-                          </html>
-            
-     
+function updateProfileUI(){
+ $("profileName").value=profile.name||"";
+ $("themeSelect").value=profile.theme||"dark";
+ const photo=profile.photo;
+ ["profileAvatar","headerAvatar"].forEach(id=>{
+  const img=$(id);
+  if(photo){img.src=photo;img.classList.remove("hidden")}
+  else{img.removeAttribute("src");if(id==="headerAvatar")img.classList.add("hidden")}
+ });
+ applyTheme();
+}
+$("saveProfile").onclick=()=>{
+ profile.name=$("profileName").value.trim();
+ if(storeProfile()){updateProfileUI();alert("Profil saqlandi!")}
+};
+$("photoInput").addEventListener("change",e=>{
+ const file=e.target.files&&e.target.files[0];if(!file)return;
+ if(!file.type.startsWith("image/")){alert("Rasm faylini tanla.");return}
+ if(file.size>5*1024*1024){alert("Rasm 5 MB dan kichik bo‘lsin.");return}
+ const reader=new FileReader();
+ reader.onload=()=>{
+  const img=new Image();
+  img.onload=()=>{
+   const canvas=document.createElement("canvas"),max=320;
+   const scale=Math.min(1,max/Math.max(img.width,img.height));
+   canvas.width=Math.round(img.width*scale);canvas.height=Math.round(img.height*scale);
+   canvas.getContext("2d").drawImage(img,0,0,canvas.width,canvas.height);
+   profile.photo=canvas.toDataURL("image/jpeg",.78);
+   if(storeProfile())updateProfileUI();
+  };
+  img.onerror=()=>alert("Rasmni ochib bo‘lmadi.");
+  img.src=reader.result;
+ };
+ reader.readAsDataURL(file);
+});
+$("themeSelect").onchange=()=>{profile.theme=$("themeSelect").value;if(storeProfile())applyTheme()};
+function applyTheme(){
+ if(profile.theme==="light"){
+  document.documentElement.style.colorScheme="light";
+  document.documentElement.style.setProperty("--bg","#f1f5fb");
+  document.documentElement.style.setProperty("--card","#ffffff");
+  document.documentElement.style.setProperty("--line","#d8e0ed");
+  document.documentElement.style.setProperty("--text","#152139");
+  document.documentElement.style.setProperty("--muted","#60718a");
+  document.documentElement.style.setProperty("--blue","#3468c9");
+  document.querySelectorAll("input,select,textarea").forEach(el=>{el.style.background="#f7f9fd";el.style.color="#152139"});
+  document.querySelector(".nav").style.background="#ffffffee";
+ }else{
+  document.documentElement.style.colorScheme="dark";
+  [["--bg","#080d19"],["--card","#
