@@ -2,310 +2,371 @@
 <!DOCTYPE html>
 <html lang="uz">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#101426">
-<title>KyveroTime</title>
-<style>
-:root{--bg:#101426;--panel:#1b2340;--text:#f6f7ff;--muted:#9da9c8;--accent:#a5a6ff;--line:#343d5c}
-body.light{--bg:#f2f3fc;--panel:#fff;--text:#20243b;--muted:#747c99;--accent:#6565db;--line:#e1e3f2}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Arial,sans-serif;transition:.2s}
-button,input,textarea,select{font:inherit}
-button{cursor:pointer}
-.app{max-width:680px;margin:auto;padding:22px 16px 100px}
-header{display:flex;align-items:center;justify-content:space-between;gap:10px}
-.brand{font-size:25px;font-weight:850;letter-spacing:-1px}
-.brand span{color:var(--accent)}
-.muted,.sub{color:var(--muted)}
-.small{font-size:13px}
-.iconbtn{background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:12px;padding:10px}
-.hero{padding:22px 0 8px}
-.hero h1{font-size:30px;line-height:1.2;margin:8px 0}
-.tag{font-size:11px;letter-spacing:3px;color:var(--accent);font-weight:750}
-.panel{background:var(--panel);border:1px solid var(--line);padding:17px;border-radius:20px;margin-top:16px}
-.panel h2{font-size:18px;margin:0 0 14px}
-.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-top:18px}
-.stat{background:var(--panel);border:1px solid var(--line);padding:13px 10px;border-radius:15px;min-width:0}
-.stat strong{display:block;font-size:23px}
-.stat span{font-size:11px;color:var(--muted)}
-label{display:block;font-size:13px;color:var(--muted);margin:12px 0 5px}
-input,textarea,select{width:100%;padding:12px;border-radius:11px;border:1px solid var(--line);background:var(--bg);color:var(--text);outline:none}
-textarea{resize:vertical;min-height:70px}
-input:focus,textarea:focus,select:focus{border-color:var(--accent)}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.primary{background:var(--accent);color:#15162b;border:0;border-radius:12px;padding:12px 15px;font-weight:750}
-.secondary{background:transparent;color:var(--text);border:1px solid var(--line);border-radius:11px;padding:10px}
-.full{width:100%;margin-top:13px}
-.row{display:flex;align-items:center;gap:12px}
-.row>*{min-width:0}
-.task{display:flex;align-items:flex-start;gap:10px;border-bottom:1px solid var(--line);padding:14px 0}
-.task:last-child{border-bottom:0;padding-bottom:0}
-.check{width:20px;height:20px;accent-color:var(--accent);margin-top:3px;flex-shrink:0}
-.taskbody{flex:1;overflow-wrap:anywhere}
-.taskname{font-weight:650}
-.done .taskname{text-decoration:line-through;color:var(--muted)}
-.taskmeta{font-size:12px;color:var(--muted);margin-top:4px;white-space:pre-wrap}
-.taskactions{display:flex;gap:5px}
-.taskactions button{padding:6px 8px}
-.pill{display:inline-block;background:var(--bg);border:1px solid var(--line);border-radius:99px;padding:4px 8px;font-size:11px;color:var(--accent);margin-top:6px}
-.progress{height:7px;background:var(--bg);border-radius:99px;overflow:hidden;margin-top:10px}
-.progress div{height:100%;background:var(--accent);width:0;transition:.2s}
-.avatar{width:68px;height:68px;border-radius:50%;object-fit:cover;background:var(--bg);border:2px solid var(--accent)}
-.profiletop{display:flex;align-items:center;gap:15px}
-.empty{text-align:center;padding:22px 5px;color:var(--muted);font-size:14px}
-.nav{position:fixed;bottom:0;left:0;right:0;background:var(--panel);border-top:1px solid var(--line);display:flex;justify-content:center;gap:5px;padding:10px 5px calc(10px + env(safe-area-inset-bottom));z-index:5}
-.nav button{flex:1;max-width:150px;background:transparent;border:0;color:var(--muted);padding:8px 3px;border-radius:10px;font-size:12px}
-.nav button.active{color:var(--accent);background:var(--bg)}
-.page{display:none}.page.active{display:block}
-.notice{font-size:12px;color:var(--muted);line-height:1.5}
-@media(min-width:560px){.app{padding-top:32px}.hero h1{font-size:36px}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b1020">
+  <meta name="description" content="KyveroTime — kunlik reja va eslatmalar">
+  <title>KyveroTime</title>
+
+  <style>
+    * { box-sizing: border-box; }
+    :root {
+      color-scheme: dark;
+      --bg: #080d19;
+      --panel: #121b2d;
+      --line: #25334c;
+      --blue: #68aaff;
+      --text: #f3f6ff;
+      --muted: #98a8c2;
+    }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, Arial, sans-serif;
+    }
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+    .app {
+      width: min(100%, 560px);
+      min-height: 100dvh;
+      margin: auto;
+      padding: 24px 18px 40px;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .logo {
+      width: 50px;
+      height: 50px;
+      display: grid;
+      place-items: center;
+      border-radius: 17px;
+      background: linear-gradient(135deg,#427cff,#63e0db);
+      color: #071020;
+      font-size: 27px;
+      font-weight: 900;
+    }
+    h1 { font-size: 24px; margin: 0; letter-spacing: -.8px; }
+    .sub, .muted { color: var(--muted); font-size: 13px; }
+    .hero {
+      background: linear-gradient(140deg,#172c4a,#111a2b 75%);
+      border: 1px solid var(--line);
+      border-radius: 25px;
+      padding: 23px;
+      margin-bottom: 22px;
+    }
+    .eyebrow {
+      color: #8fbaff;
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+    .clock { font-size: 42px; font-weight: 750; margin: 9px 0 2px; }
+    h2 { font-size: 19px; margin: 24px 0 13px; }
+    .stats { display: flex; gap: 10px; margin-top: 20px; }
+    .stat {
+      flex: 1; padding: 12px;
+      background: #0c1728; border-radius: 15px;
+    }
+    .stat strong { display: block; font-size: 23px; }
+    .stat span { color: var(--muted); font-size: 12px; }
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 18px;
+      margin-bottom: 18px;
+    }
+    label { display: block; color: var(--muted); font-size: 13px; margin: 12px 0 7px; }
+    input {
+      width: 100%; min-width: 0;
+      background: #0a1221;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 13px;
+      color: white;
+      outline: none;
+    }
+    input:focus { border-color: var(--blue); }
+    .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .primary, .secondary {
+      border: 0; border-radius: 13px;
+      padding: 13px 15px; font-weight: 700;
+    }
+    .primary { width: 100%; margin-top: 16px; background: var(--blue); color: #071326; }
+    .secondary { background: #22314a; color: white; }
+    .task {
+      display: flex; align-items: flex-start; gap: 11px;
+      padding: 15px 0; border-bottom: 1px solid var(--line);
+    }
+    .task:last-child { border-bottom: 0; }
+    .check {
+      width: 23px; height: 23px; flex: 0 0 23px;
+      border: 1px solid #526783; border-radius: 8px;
+      background: transparent; color: white; padding: 0;
+    }
+    .task-main { flex: 1; min-width: 0; }
+    .task-title { font-weight: 650; overflow-wrap: anywhere; }
+    .task-time { color: var(--muted); font-size: 12px; margin-top: 5px; }
+    .done .task-title { text-decoration: line-through; color: var(--muted); }
+    .delete { border: 0; background: transparent; color: #ff8794; padding: 4px; }
+    .empty { text-align: center; padding: 25px 5px; color: var(--muted); }
+    .notice { font-size: 12px; line-height: 1.6; color: var(--muted); }
+    footer { text-align: center; color: #687a97; font-size: 12px; padding-top: 14px; }
+  </style>
 </head>
+
 <body>
-<div class="app">
-<header>
-  <div class="brand">Kyvero<span>Time</span> ✦</div>
-  <button class="iconbtn" id="themeBtn" aria-label="Mavzuni almashtirish">☀️ / 🌙</button>
-</header>
-
-<section class="hero">
-  <div class="tag">YOUR DAY, YOUR RULES</div>
-  <h1 id="greeting">Buguningni rejalashtir.</h1>
-  <div class="sub" id="today"></div>
-</section>
-
-<section class="page active" id="home">
-  <div class="stats">
-    <div class="stat"><strong id="total">0</strong><span>Jami vazifa</span></div>
-    <div class="stat"><strong id="finished">0</strong><span>Bajarildi</span></div>
-    <div class="stat"><strong id="percent">0%</strong><span>Natija</span></div>
-  </div>
-  <div class="panel">
-    <div class="row" style="justify-content:space-between">
-      <h2 style="margin:0">Bugungi rejam</h2>
-      <span class="small muted" id="dateLabel"></span>
+<main class="app">
+  <header>
+    <div class="logo">K</div>
+    <div>
+      <h1>KyveroTime</h1>
+      <div class="sub">Vaqtingni boshqar. Maqsadingga erish.</div>
     </div>
-    <div class="progress"><div id="progressBar"></div></div>
-    <div id="todayTasks"></div>
-  </div>
-  <div class="panel">
-    <h2>＋ Yangi vazifa</h2>
-    <form id="taskForm">
-      <input type="hidden" id="editId">
-      <label for="taskName">Vazifa nomi</label>
-      <input id="taskName" maxlength="120" placeholder="Masalan: Matematika o‘qish" required>
-      <div class="grid2">
-        <div><label for="taskDate">Sana</label><input id="taskDate" type="date" required></div>
-        <div><label for="taskCategory">Kategoriya</label>
-          <select id="taskCategory">
-            <option>O‘qish</option><option>Ish</option><option>Sport</option><option>Shaxsiy</option><option>Boshqa</option>
-          </select>
-        </div>
-        <div><label for="startTime">Boshlanish vaqti</label><input id="startTime" type="time"></div>
-        <div><label for="endTime">Tugash vaqti</label><input id="endTime" type="time"></div>
-      </div>
-      <label for="taskNote">Izoh (ixtiyoriy)</label>
-      <textarea id="taskNote" maxlength="500" placeholder="Vazifa haqida qo‘shimcha..."></textarea>
-      <label><input id="reminder" type="checkbox" style="width:auto;margin-right:8px">Vaqti kelganda eslatishga harakat qil</label>
-      <button class="primary full" type="submit" id="saveTask">Vazifani qo‘shish</button>
-      <button class="secondary full" type="button" id="cancelEdit" hidden>Bekor qilish</button>
-    </form>
-  </div>
-</section>
+  </header>
 
-<section class="page" id="all">
-  <div class="panel">
-    <h2>Barcha vazifalar</h2>
-    <label for="filterDate">Sana bo‘yicha ko‘rish</label>
-    <input type="date" id="filterDate">
-    <button class="secondary full" id="showAll">Barcha sanalar</button>
-    <div id="allTasks"></div>
-  </div>
-</section>
-
-<section class="page" id="statsPage">
-  <div class="panel">
-    <h2>📊 Natijalaring</h2>
-    <p class="muted">Barcha saqlangan vazifalar bo‘yicha natija.</p>
+  <section class="hero">
+    <div class="eyebrow">Sening bugungi kuning</div>
+    <div class="clock" id="clock">00:00:00</div>
+    <div class="sub" id="today"></div>
     <div class="stats">
-      <div class="stat"><strong id="sTotal">0</strong><span>Jami</span></div>
-      <div class="stat"><strong id="sDone">0</strong><span>Bajarilgan</span></div>
-      <div class="stat"><strong id="sRate">0%</strong><span>Bajarilish</span></div>
+      <div class="stat"><strong id="total">0</strong><span>Jami rejalar</span></div>
+      <div class="stat"><strong id="completed">0</strong><span>Bajarildi</span></div>
+      <div class="stat"><strong id="remaining">0</strong><span>Qoldi</span></div>
     </div>
-    <h3>Oxirgi 7 kun</h3>
-    <div id="weekStats"></div>
-  </div>
-</section>
+  </section>
 
-<section class="page" id="profilePage">
-  <div class="panel">
-    <h2>👤 Shaxsiy profil</h2>
-    <div class="profiletop">
-      <img class="avatar" id="avatar" alt="Profil rasmi">
-      <div><strong id="profilePreview">Mening profilim</strong><p class="muted small">KyveroTime foydalanuvchisi</p></div>
-    </div>
-    <label for="profileName">Isming</label>
-    <input id="profileName" maxlength="50" placeholder="Ismingni yoz">
-    <label for="profilePhoto">Profil rasmi</label>
-    <input id="profilePhoto" type="file" accept="image/*">
-    <label for="goal">Asosiy maqsading</label>
-    <textarea id="goal" maxlength="300" placeholder="Masalan: Matematikadan yaxshi natija olish"></textarea>
-    <button class="primary full" id="saveProfile">Profilni saqlash</button>
-  </div>
-  <div class="panel">
-    <h2>⚙️ Sozlamalar</h2>
-    <p class="notice">Ma’lumotlar shu brauzerning xotirasida saqlanadi. Brauzer ma’lumotlarini tozalash ularni o‘chirishi mumkin.</p>
-    <button class="secondary full" id="exportData">Ma’lumotlarni zaxiralash</button>
-    <label for="importFile">Zaxira faylini tiklash</label>
-    <input type="file" id="importFile" accept=".json,application/json">
-    <button class="secondary full" id="notifyBtn">Bildirishnomalarga ruxsat berish</button>
-    <p class="notice">Eslatma: sahifa ochiq turganda vaqtli eslatmalar ishlashi mumkin. Brauzer yopilganda yoki telefon ilovani to‘xtatganda ular kafolatlanmaydi.</p>
-  </div>
-</section>
-</div>
+  <h2>＋ Yangi reja</h2>
+  <section class="panel">
+    <form id="taskForm">
+      <label for="taskName">Reja nomi</label>
+      <input id="taskName" maxlength="100" placeholder="Masalan, matematika o‘qish" required>
 
-<nav class="nav">
-  <button class="active" data-page="home">⌂<br>Bosh sahifa</button>
-  <button data-page="all">☷<br>Vazifalar</button>
-  <button data-page="statsPage">▥<br>Statistika</button>
-  <button data-page="profilePage">♙<br>Profil</button>
-</nav>
+      <div class="pair">
+        <div>
+          <label for="taskDate">Sana</label>
+          <input id="taskDate" type="date" required>
+        </div>
+        <div>
+          <label for="taskTime">Vaqt</label>
+          <input id="taskTime" type="time" required>
+        </div>
+      </div>
+
+      <button class="primary" type="submit">＋ Rejani saqlash</button>
+    </form>
+  </section>
+
+  <h2>📅 Rejalarim</h2>
+  <section class="panel">
+    <div id="taskList"></div>
+  </section>
+
+  <section class="panel">
+    <h2 style="margin-top:0">🔔 Bildirishnomalar</h2>
+    <p class="notice" id="notificationStatus">
+      Bildirishnomalarni yoqib, eslatmalar uchun ruxsat ber.
+    </p>
+    <button class="secondary" id="enableNotifications" type="button">
+      Bildirishnomalarni yoqish
+    </button>
+    <p class="notice">
+      Eslatma: ushbu boshlang‘ich versiyada sayt ochiq turganida
+      eslatmalar ishlaydi. Sayt yopiq yoki telefon qulflangan paytda
+      bildirishnoma kelishi kafolatlanmaydi.
+    </p>
+  </section>
+
+  <footer>KYVEROTIME · Vaqting qadrlidir</footer>
+</main>
 
 <script>
-const $=id=>document.getElementById(id);
-const todayISO=()=>{const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`};
-const fresh=()=>({tasks:[],profile:{name:"",goal:"",photo:""},theme:"dark"});
-let data;
-try{data=JSON.parse(localStorage.getItem("kyveroData")||"null")}catch(e){data=null}
-if(!data||typeof data!=="object")data=fresh();
-if(!Array.isArray(data.tasks))data.tasks=[];
-if(!data.profile)data.profile={name:"",goal:"",photo:""};
-if(!data.reminded)data.reminded=[];
-let timers=[];
+  const $ = id => document.getElementById(id);
+  const storageKey = "kyverotime-tasks-v1";
+  let tasks = [];
 
-function persist(){
- try{localStorage.setItem("kyveroData",JSON.stringify(data))}
- catch(e){alert("Xotira to‘ldi. Profil rasmini kichikroq tanla yoki eski vazifalarni kamaytir.")}
-}
-function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
-function dateText(d){if(!d)return"";return new Date(d+"T12:00:00").toLocaleDateString("uz-UZ",{day:"numeric",month:"short"})}
-function sorted(tasks){return [...tasks].sort((a,b)=>(a.date||"").localeCompare(b.date||"")||(a.start||"99:99").localeCompare(b.start||"99:99"))}
-function renderTasks(container,tasks){
- container.replaceChildren();
- if(!tasks.length){container.innerHTML='<div class="empty">Hozircha vazifa yo‘q.<br>Yangi reja qo‘shib ko‘r! ✨</div>';return}
- sorted(tasks).forEach(t=>{
-  const row=document.createElement("div");
-  row.className="task"+(t.done?" done":"");
-  const check=document.createElement("input");check.type="checkbox";check.className="check";check.checked=!!t.done;check.setAttribute("aria-label","Bajarildi");check.onchange=()=>{t.done=check.checked;persist();render()};
-  const body=document.createElement("div");body.className="taskbody";
-  const name=document.createElement("div");name.className="taskname";name.textContent=t.name;body.append(name);
-  const times=[t.start,t.end].filter(Boolean).join(" – ");
-  const meta=document.createElement("div");meta.className="taskmeta";meta.textContent=[t.date?dateText(t.date):"",times,t.category||"",t.note||""].filter(Boolean).join(" · ");body.append(meta);
-  const pill=document.createElement("span");pill.className="pill";pill.textContent=t.done?"Bajarildi":(t.reminder?"Eslatma tanlangan":"Rejada");body.append(pill);
-  const actions=document.createElement("div");actions.className="taskactions";
-  const edit=document.createElement("button");edit.className="secondary";edit.textContent="✎";edit.setAttribute("aria-label","Tahrirlash");edit.onclick=()=>editTask(t.id);
-  const del=document.createElement("button");del.className="secondary";del.textContent="×";del.setAttribute("aria-label","O‘chirish");del.onclick=()=>{if(confirm("Bu vazifani o‘chirasanmi?")){data.tasks=data.tasks.filter(x=>x.id!==t.id);persist();render()}};
-  actions.append(edit,del);row.append(check,body,actions);container.append(row);
- });
-}
-function render(){
- const day=todayISO(),todays=data.tasks.filter(t=>t.date===day),done=todays.filter(t=>t.done).length;
- $("total").textContent=todays.length;$("finished").textContent=done;$("percent").textContent=(todays.length?Math.round(done/todays.length*100):0)+"%";
- $("progressBar").style.width=(todays.length?done/todays.length*100:0)+"%";
- $("dateLabel").textContent=dateText(day);renderTasks($("todayTasks"),todays);
- const filter=$("filterDate").value;
- renderTasks($("allTasks"),filter?data.tasks.filter(t=>t.date===filter):data.tasks);
- const completed=data.tasks.filter(t=>t.done).length,rate=data.tasks.length?Math.round(completed/data.tasks.length*100):0;
- $("sTotal").textContent=data.tasks.length;$("sDone").textContent=completed;$("sRate").textContent=rate+"%";
- $("weekStats").replaceChildren();
- for(let i=6;i>=0;i--){
-  const d=new Date();d.setDate(d.getDate()-i);const key=`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
-  const ts=data.tasks.filter(t=>t.date===key),n=ts.filter(t=>t.done).length;
-  const line=document.createElement("div");line.style.margin="12px 0";
-  const label=document.createElement("div");label.className="row";label.style.justifyContent="space-between";
-  const left=document.createElement("span");left.textContent=d.toLocaleDateString("uz-UZ",{weekday:"short",day:"numeric",month:"short"});
-  const right=document.createElement("span");right.className="muted small";right.textContent=`${n}/${ts.length}`;
-  label.append(left,right);const bar=document.createElement("div");bar.className="progress";const fill=document.createElement("div");fill.style.width=(ts.length?n/ts.length*100:0)+"%";bar.append(fill);line.append(label,bar);$("weekStats").append(line);
- }
- $("profilePreview").textContent=data.profile.name||"Mening profilim";
- $("profileName").value=data.profile.name||"";$("goal").value=data.profile.goal||"";
- if(data.profile.photo)$("avatar").src=data.profile.photo;else $("avatar").removeAttribute("src");
- $("greeting").textContent=data.profile.name?`Salom, ${data.profile.name}!`:"Buguningni rejalashtir.";
-}
-function resetForm(){
- $("taskForm").reset();$("editId").value="";$("taskDate").value=todayISO();$("saveTask").textContent="Vazifani qo‘shish";$("cancelEdit").hidden=true;
-}
-function editTask(id){
- const t=data.tasks.find(x=>x.id===id);if(!t)return;
- $("editId").value=t.id;$("taskName").value=t.name;$("taskDate").value=t.date||todayISO();$("taskCategory").value=t.category||"Boshqa";$("startTime").value=t.start||"";$("endTime").value=t.end||"";$("taskNote").value=t.note||"";$("reminder").checked=!!t.reminder;
- $("saveTask").textContent="O‘zgarishni saqlash";$("cancelEdit").hidden=false;
- document.querySelector('[data-page="home"]').click();$("taskName").focus();window.scrollTo({top:0,behavior:"smooth"});
-}
-$("taskForm").addEventListener("submit",e=>{
- e.preventDefault();
- const name=$("taskName").value.trim(),date=$("taskDate").value,start=$("startTime").value,end=$("endTime").value;
- if(!name||!date)return;
- if(start&&end&&end<start){alert("Tugash vaqti boshlanish vaqtidan oldin bo‘la olmaydi.");return}
- const id=$("editId").value;
- if(id){const t=data.tasks.find(x=>String(x.id)===id);if(t)Object.assign(t,{name,date,start,end,category:$("taskCategory").value,note:$("taskNote").value.trim(),reminder:$("reminder").checked})}
- else data.tasks.push({id:String(Date.now())+Math.random().toString(16).slice(2),name,date,start,end,category:$("taskCategory").value,note:$("taskNote").value.trim(),reminder:$("reminder").checked,done:false});
- persist();resetForm();render();scheduleReminders();
-});
-$("cancelEdit").onclick=resetForm;
-$("filterDate").onchange=render;
-$("showAll").onclick=()=>{$("filterDate").value="";render()};
-document.querySelectorAll(".nav button").forEach(btn=>btn.onclick=()=>{
- document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("active",b===btn));
- document.querySelectorAll(".page").forEach(p=>p.classList.toggle("active",p.id===btn.dataset.page));
- window.scrollTo({top:0,behavior:"smooth"});
-});
-$("themeBtn").onclick=()=>{data.theme=data.theme==="light"?"dark":"light";applyTheme();persist()};
-function applyTheme(){document.body.classList.toggle("light",data.theme==="light")}
-$("saveProfile").onclick=()=>{
- data.profile.name=$("profileName").value.trim();data.profile.goal=$("goal").value.trim();persist();render();alert("Profil saqlandi!");
-};
-$("profilePhoto").onchange=()=>{
- const file=$("profilePhoto").files[0];if(!file)return;
- if(!file.type.startsWith("image/")){alert("Rasm faylini tanla.");return}
- if(file.size>2*1024*1024){alert("Iltimos, 2 MB dan kichik rasm tanla.");return}
- const reader=new FileReader();reader.onload=()=>{data.profile.photo=reader.result;persist();render()};reader.readAsDataURL(file);
-};
-$("notifyBtn").onclick=async()=>{
- if(!("Notification" in window)){alert("Bu brauzer bildirishnomalarni qo‘llamaydi.");return}
- try{const result=await Notification.requestPermission();alert(result==="granted"?"Ruxsat berildi. Sahifa ochiq turganda eslatmalarni tekshiramiz.":"Bildirishnomaga ruxsat berilmadi.");scheduleReminders()}
- catch(e){alert("Bildirishnomani yoqib bo‘lmadi.")}
-};
-function scheduleReminders(){
- timers.forEach(clearTimeout);timers=[];
- if(!("Notification" in window)||Notification.permission!=="granted")return;
- const now=Date.now();
- data.tasks.filter(t=>t.reminder&&!t.done&&t.date&&t.start).forEach(t=>{
-  const key=t.id+"-"+t.date+"-"+t.start;if(data.reminded.includes(key))return;
-  const when=new Date(t.date+"T"+t.start).getTime(),delay=when-now;
-  if(delay>=0&&delay<2147480000){
-   timers.push(setTimeout(()=>{
-    try{new Notification("KyveroTime — eslatma",{body:t.name+" ("+t.start+")"})}catch(e){}
-    data.reminded.push(key);persist();
-   },delay));
+  try {
+    tasks = JSON.parse(localStorage.getItem(storageKey) || "[]");
+    if (!Array.isArray(tasks)) tasks = [];
+  } catch {
+    tasks = [];
   }
- });
-}
-$("exportData").onclick=()=>{
- const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"}),url=URL.createObjectURL(blob),a=document.createElement("a");
- a.href=url;a.download="kyverotime-backup.json";a.click();URL.revokeObjectURL(url);
-};
-$("importFile").onchange=()=>{
- const file=$("importFile").files[0];if(!file)return;
- const reader=new FileReader();reader.onload=()=>{
- try{const incoming=JSON.parse(reader.result);if(!incoming||!Array.isArray(incoming.tasks)||!incoming.profile)throw Error();if(confirm("Joriy ma’lumotlarni zaxira fayli bilan almashtiraymi?")){data=incoming;if(!data.reminded)data.reminded=[];persist();applyTheme();render();scheduleReminders();alert("Zaxira tiklandi.")}}
- catch(e){alert("Zaxira fayli noto‘g‘ri yoki buzilgan.")}
- };reader.readAsText(file);
-};
-$("today").textContent=new Date().toLocaleDateString("uz-UZ",{weekday:"long",day:"numeric",month:"long",year:"numeric"});
-$("taskDate").value=todayISO();
-applyTheme();render();scheduleReminders();
+
+  function save() {
+    try {
+      localStorage.setItem(storageKey, JSON.stringify(tasks));
+    } catch {
+      alert("Rejalarni saqlab bo‘lmadi. Telefon xotirasini tekshir.");
+    }
+    render();
+  }
+
+  function localDate(date = new Date()) {
+    const y = date.getFullYear();
+    const m = String(date.getMonth() + 1).padStart(2, "0");
+    const d = String(date.getDate()).padStart(2, "0");
+    return `${y}-${m}-${d}`;
+  }
+
+  $("taskDate").value = localDate();
+
+  function updateClock() {
+    const now = new Date();
+    $("clock").textContent = now.toLocaleTimeString("uz-UZ", {
+      hour: "2-digit", minute: "2-digit", second: "2-digit",
+      hour12: false
+    });
+    $("today").textContent = now.toLocaleDateString("uz-UZ", {
+      weekday: "long", day: "numeric", month: "long", year: "numeric"
+    });
+  }
+
+  function render() {
+    const list = $("taskList");
+    const today = localDate();
+    const todaysTasks = tasks
+      .filter(t => t.date === today)
+      .sort((a, b) => a.time.localeCompare(b.time));
+
+    $("total").textContent = todaysTasks.length;
+    $("completed").textContent = todaysTasks.filter(t => t.done).length;
+    $("remaining").textContent = todaysTasks.filter(t => !t.done).length;
+
+    list.replaceChildren();
+
+    if (!todaysTasks.length) {
+      const empty = document.createElement("div");
+      empty.className = "empty";
+      empty.textContent = "Bugun uchun reja yo‘q. Birinchi rejangni qo‘sh!";
+      list.appendChild(empty);
+      return;
+    }
+
+    todaysTasks.forEach(task => {
+      const row = document.createElement("div");
+      row.className = "task" + (task.done ? " done" : "");
+
+      const check = document.createElement("button");
+      check.className = "check";
+      check.type = "button";
+      check.textContent = task.done ? "✓" : "";
+      check.setAttribute("aria-label", "Bajarilgan deb belgilash");
+      check.addEventListener("click", () => {
+        task.done = !task.done;
+        save();
+      });
+
+      const main = document.createElement("div");
+      main.className = "task-main";
+
+      const title = document.createElement("div");
+      title.className = "task-title";
+      title.textContent = task.name;
+
+      const time = document.createElement("div");
+      time.className = "task-time";
+      time.textContent = task.time + " · " + task.date;
+
+      main.append(title, time);
+
+      const del = document.createElement("button");
+      del.className = "delete";
+      del.type = "button";
+      del.textContent = "✕";
+      del.setAttribute("aria-label", "Rejani o‘chirish");
+      del.addEventListener("click", () => {
+        if (confirm("Bu rejani o‘chirmoqchisanmi?")) {
+          tasks = tasks.filter(t => t.id !== task.id);
+          save();
+        }
+      });
+
+      row.append(check, main, del);
+      list.appendChild(row);
+    });
+  }
+
+  $("taskForm").addEventListener("submit", event => {
+    event.preventDefault();
+
+    const name = $("taskName").value.trim();
+    const date = $("taskDate").value;
+    const time = $("taskTime").value;
+
+    if (!name || !date || !time) return;
+
+    const id = Date.now().toString() + Math.random().toString(16).slice(2);
+
+    tasks.push({
+      id, name, date, time, done: false, notified: false
+    });
+
+    save();
+    $("taskName").value = "";
+    $("taskName").focus();
+  });
+
+  $("enableNotifications").addEventListener("click", async () => {
+    if (!("Notification" in window)) {
+      $("notificationStatus").textContent =
+        "Bu brauzer bildirishnomalarni qo‘llab-quvvatlamaydi.";
+      return;
+    }
+
+    if (!window.isSecureContext) {
+      $("notificationStatus").textContent =
+        "Xavfsiz HTTPS manzilida ochish kerak.";
+      return;
+    }
+
+    try {
+      const permission = await Notification.requestPermission();
+      $("notificationStatus").textContent =
+        permission === "granted"
+          ? "Bildirishnomalarga ruxsat berildi. Eslatmalar sayt ochiq turganida ishlaydi."
+          : "Ruxsat berilmadi. Brauzer sozlamalaridan ruxsat berishing mumkin.";
+    } catch {
+      $("notificationStatus").textContent =
+        "Ruxsat so‘rash amalga oshmadi.";
+    }
+  });
+
+  const alreadySent = new Set();
+
+  function checkReminders() {
+    if (!("Notification" in window) ||
+        Notification.permission !== "granted") return;
+
+    const now = new Date();
+    const date = localDate(now);
+    const time = `${String(now.getHours()).padStart(2, "0")}:${String(now.getMinutes()).padStart(2, "0")}`;
+
+    tasks.forEach(task => {
+      const key = task.id + "-" + date;
+      if (task.date === date && task.time === time &&
+          !task.done && !alreadySent.has(key)) {
+        alreadySent.add(key);
+        try {
+          new Notification("KyveroTime ⏰", {
+            body: "Rejang vaqti keldi: " + task.name,
+            tag: key
+          });
+        } catch {}
+      }
+    });
+  }
+
+  updateClock();
+  render();
+  setInterval(updateClock, 1000);
+  setInterval(checkReminders, 15000);
 </script>
 </body>
-  </html>
-      
+                          </html>
+            
+     
